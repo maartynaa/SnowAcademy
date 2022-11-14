@@ -1,0 +1,18 @@
+{
+    "name": "snowdog/snow-academy",
+    "description": "snowacademy",
+    "autoload": {
+        "psr-4": {
+            "Snowdog\\SnowAcademy\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Martyna Maciejewska",
+            "email": "martyna.maciejewska@snow.dog"
+        }
+    ],
+    "require": {
+        "clue/framework-x": "dev-main"
+    }
+}
