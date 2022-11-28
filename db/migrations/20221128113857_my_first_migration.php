@@ -20,7 +20,7 @@ final class MyFirstMigration extends AbstractMigration
     {
         $pet = $this->table('pet');
         $pet->addColumn('name', 'string')
-            ->addColumn('age', 'intiger')
+            ->addColumn('age', 'integer')
             ->addColumn('color', 'string')
             ->addColumn('breed', 'string')
             ->create();
