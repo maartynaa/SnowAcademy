@@ -10,4 +10,6 @@ $app->get('/', function () {
     );
 });
 
+$app->get('/pet/{id}', new Snowdog\SnowAcademy\PetLookupController($repository));
+
 $app->run();
