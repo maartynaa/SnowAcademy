@@ -2,7 +2,11 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = new FrameworkX\App();
+$builder = new ContainerBuilder();
+$builder->addDefinitions("config.php");
+$container = $builder->build();
+
+$app = new FrameworkX\App(new FrameworkX\Container($container));
 
 $app->get('/', function () {
     return React\Http\Message\Response::plaintext(
