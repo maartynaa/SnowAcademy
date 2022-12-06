@@ -1,10 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 require __DIR__ . '/../vendor/autoload.php';
 
-$builder = new ContainerBuilder();
-$builder->addDefinitions("config.php");
-$container = $builder->build();
+$containerBuilder = new \DI\ContainerBuilder();
+$containerBuilder->addDefinitions(__DIR__ . '/config.php');
+$containerBuilder->addDefinitions(__DIR__ . '/di.php');
+$container = $containerBuilder->build();
 
 $app = new FrameworkX\App(new FrameworkX\Container($container));
 
