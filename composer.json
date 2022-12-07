@@ -15,6 +15,7 @@
     "require": {
         "clue/framework-x": "dev-main",
         "robmorgan/phinx": "^0.13.1",
-        "php-di/php-di": "^2.1"
+        "php-di/php-di": "^6.4",
+        "react/mysql": "^0.5.7"
     }
 }

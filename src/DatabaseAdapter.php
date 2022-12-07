@@ -2,6 +2,8 @@
 
 namespace Snowdog\SnowAcademy;
 
+use React\MySQL\Factory;
+
 class DatabaseAdapter
 {
     /**
@@ -17,6 +19,11 @@ class DatabaseAdapter
     /**
      * @var string
      */
+    private $database;
+
+    /**
+     * @var string
+     */
     private $username;
 
     /**
@@ -27,12 +34,21 @@ class DatabaseAdapter
     public function __construct(
         string $host,
         int $port,
+        string $database,
         string $username,
         string $password
     ) {
         $this->host = $host;
         $this->port = $port;
+        $this->database = $database;
         $this->username = $username;
         $this->password = $password;
+    }
+
+    public function connect()
+    {
+        
+        $credential = $this->username . ':' . $this->password . '@' . $this->host . '/' . $this->database . '?idle=0.001';
+        return (new Factory())->createLazyConnection($credentials);
     }
 }
