@@ -47,8 +47,7 @@ class DatabaseAdapter
 
     public function connect()
     {
-        
-        $credential = $this->username . ':' . $this->password . '@' . $this->host . '/' . $this->database . '?idle=0.001';
+        $credentials = $this->username . ':' . $this->password . '@' . $this->host . '/' . $this->database . '?idle=0.001';
         return (new Factory())->createLazyConnection($credentials);
     }
 }
