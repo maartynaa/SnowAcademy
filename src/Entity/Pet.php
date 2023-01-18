@@ -1,6 +1,6 @@
 <?php
 
-namespace Snowdog\SnowAcademy;
+namespace Snowdog\SnowAcademy\Entity;
 
 class Pet
 {

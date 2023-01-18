@@ -2,8 +2,12 @@
 
 declare(strict_types=1);
 
-use Snowdog\SnowAcademy\PetRepository;
 use Snowdog\SnowAcademy\DatabaseAdapter;
+use Snowdog\SnowAcademy\Repository\PetRepository;
+use Snowdog\SnowAcademy\Controller\PetGetController;
+use Snowdog\SnowAcademy\Controller\PetPutController;
+use Snowdog\SnowAcademy\Controller\PetPostController;
+use Snowdog\SnowAcademy\Controller\PetDeleteController;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -23,6 +27,12 @@ $app->get('/', function () {
     );
 });
 
-$app->get('/pet/{id}', new Snowdog\SnowAcademy\PetLookupController($repository));
+$app->get('/pet/{id}', new PetGetController($repository));
+
+$app->post('/pet', new PetPostController($repository));
+
+$app->put('/pet/{id}', new PetPutController($repository));
+
+$app->delete('/pet/{id}', new PetDeleteController($repository));
 
 $app->run();

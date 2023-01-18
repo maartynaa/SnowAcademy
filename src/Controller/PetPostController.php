@@ -1,12 +1,13 @@
 <?php
 
-namespace Snowdog\SnowAcademy;
+namespace Snowdog\SnowAcademy\Controller;
 
 use React\Http\Message\Response;
 use Psr\Http\Message\ServerRequestInterface;
-use Snowdog\SnowAcademy\PetRepositoryInterface;
+use Snowdog\SnowAcademy\Repository\PetRepositoryInterface;
 
-class PetLookupCOntroller
+
+class PetPostCOntroller
 {
     public function __construct(
         private readonly PetRepositoryInterface $repository
@@ -14,11 +15,12 @@ class PetLookupCOntroller
 
     public function __invoke(ServerRequestInterface $request)
     {
-        $id = $request->getAttribute('id');
-        $pet = $this->repository->getPetById($id);
+        $data = json_decode((string) $request->getBody(), 1);
+        $petId = $this->repository->createPet($data);
+        $pet = $this->repository->getPetById($petId);
 
         if ($pet === null) {
-            return Response::plaintext("Pet not found\n")->withStatus(Response::STATUS_NOT_FOUND);
+            return Response::plaintext("Could not add new pet.\n");
         }
 
         return Response::plaintext(
@@ -26,7 +28,7 @@ class PetLookupCOntroller
             "Pet name: " . $pet->name . "\n" .
             "Pet age: " . $pet->age . "\n" .
             "Pet color: " . $pet->color . "\n" .
-            "Pet breed: " . $pet->breed . "\n" 
+            "Pet breed: " . $pet->breed . "\n"
         );
     }
 }
