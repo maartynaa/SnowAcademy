@@ -8,9 +8,9 @@ interface PetRepositoryInterface
 {
   public function getPetById(int $id): ?Pet;
 
-  public function createPet(array $data);
+  public function createPet(array $data): ?int;
 
-  public function updatePetById(int $id, array $data): ?Pet;
+  public function updatePet(array $data): bool;
 
   public function deletePetById(int $id): bool;
 }

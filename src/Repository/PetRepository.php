@@ -43,9 +43,30 @@ class PetRepository implements PetRepositoryInterface
         return $result->insertId;
     }
 
-    public function updatePetById(int $id, array $data): ?Pet
+    public function updatePet(array $data): bool
     {
-        return null;
+        $sql = [];
+        foreach ($data as $key => $value) {
+
+            if ($key === 'id') {
+                continue;
+            }
+
+            $sql[] = $key . ' = "' . $value . '"';
+        }
+
+        $sql = implode(", ", $sql);
+
+        $result = await($this->db->query(
+            'UPDATE pet SET ' . $sql . ' WHERE id = ?',
+            [$data['id']]
+        )); 
+
+        if ($result->affectedRows === 0) {
+            return false;
+        }
+
+        return true;
     }
 
     public function deletePetById(int $id): bool

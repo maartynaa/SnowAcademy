@@ -31,7 +31,7 @@ $app->get('/pet/{id}', new PetGetController($repository));
 
 $app->post('/pet', new PetPostController($repository));
 
-$app->put('/pet/{id}', new PetPutController($repository));
+$app->put('/pet', new PetPutController($repository));
 
 $app->delete('/pet/{id}', new PetDeleteController($repository));
 

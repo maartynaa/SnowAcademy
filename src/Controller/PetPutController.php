@@ -15,6 +15,23 @@ class PetPutController
 
     public function __invoke(ServerRequestInterface $request)
     {
-       
+        $data = json_decode((string) $request->getBody(), 1);
+        if (!$data['id']) {
+            return Response::plaintext("Missing id.\n");
+        }
+
+        $response = $this->repository->updatePet($data);
+        if ($response === false) {
+            return Response::plaintext("Could not update pet.\n");
+        }
+
+        $pet = $this->repository->getPetById($data['id']);
+        return Response::plaintext(
+            "Pet ID: " . $pet->id . "\n" .
+            "Pet name: " . $pet->name . "\n" .
+            "Pet age: " . $pet->age . "\n" .
+            "Pet color: " . $pet->color . "\n" .
+            "Pet breed: " . $pet->breed . "\n"
+        );
     }
 }
