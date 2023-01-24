@@ -22,7 +22,7 @@ final class MyFirstMigration extends AbstractMigration
         $pet->addColumn('name', 'string')
             ->addColumn('age', 'integer')
             ->addColumn('color', 'string')
-            ->addColumn('breed', 'string')
+            ->addColumn('type', 'string')
             ->create();
     }
 }

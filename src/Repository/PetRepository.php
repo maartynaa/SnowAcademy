@@ -26,14 +26,14 @@ class PetRepository implements PetRepositoryInterface
         }
 
         $pet = $result->resultRows[0];
-        return new Pet($pet['id'], $pet['name'], $pet['age'], $pet['color'], $pet['breed']);
+        return new Pet($pet['id'], $pet['name'], $pet['age'], $pet['color'], $pet['type']);
     }
 
     public function createPet(array $data): ?int
     {
         $result = await($this->db->query(
-            'INSERT INTO pet (`name`, age, color, breed) VALUES (?, ?, ?, ?)',
-            [$data['name'], $data['age'], $data['color'], $data['breed']]
+            'INSERT INTO pet (`name`, age, color, `type`) VALUES (?, ?, ?, ?)',
+            [$data['name'], $data['age'], $data['color'], $data['type']]
         ));
 
         if ($result->affectedRows === 0) {

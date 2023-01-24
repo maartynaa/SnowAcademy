@@ -27,7 +27,7 @@ class PetGetCOntroller
             "Pet name: " . $pet->name . "\n" .
             "Pet age: " . $pet->age . "\n" .
             "Pet color: " . $pet->color . "\n" .
-            "Pet breed: " . $pet->breed . "\n"
+            "Pet type: " . $pet->type . "\n"
         );
     }
 }

@@ -9,6 +9,6 @@ class Pet
         public readonly string $name,
         public readonly int $age,
         public readonly string $color,
-        public readonly string $breed
+        public readonly string $type
     ) {}
 }
